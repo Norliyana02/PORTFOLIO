@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norliyana Rosamadi | Administrative Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --navy:#1f2a55;
+    --navy-dark:#161e42;
+    --accent:#5b5bd6;
+    --lavender:#eeeefb;
+    --lavender-2:#f6f6fd;
+    --text:#2b2f45;
+    --muted:#6b7089;
+    --white:#fff;
+    --radius:16px;
+    --shadow:0 4px 18px rgba(40,45,100,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--text);background:#fff;line-height:1.6}
+  a{text-decoration:none;color:inherit}
+  ul{list-style:none}
+  img{max-width:100%;display:block}
+
+  /* ============ SIDEBAR ============ */
+  .sidebar{
+    position:fixed;top:0;left:0;bottom:0;width:230px;
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-dark) 100%);
+    color:#fff;padding:36px 22px 28px;display:flex;flex-direction:column;z-index:100;overflow:hidden;
+  }
+  .sidebar::after{
+    content:"";position:absolute;left:-90px;bottom:-90px;width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle,rgba(150,150,240,.35),transparent 70%);pointer-events:none;
+  }
+  .logo{font-family:'Playfair Display',serif;font-size:3rem;line-height:1;letter-spacing:-2px;margin-bottom:14px}
+  .brand-name{font-size:1.25rem;font-weight:700;line-height:1.25}
+  .brand-role{font-size:.85rem;opacity:.8;margin-top:14px;line-height:1.35}
+  .nav{margin-top:48px;display:flex;flex-direction:column;gap:6px}
+  .nav a{
+    display:flex;align-items:center;gap:16px;padding:12px 16px;border-radius:30px;
+    font-size:.92rem;font-weight:500;transition:.25s;
+  }
+  .nav a i{width:20px;text-align:center;font-size:1.05rem}
+  .nav a:hover,.nav a.active{background:rgba(255,255,255,.16)}
+  .side-bottom{margin-top:auto;position:relative;z-index:2}
+  .tagline{font-style:italic;font-size:.78rem;opacity:.85;border-top:1px solid rgba(255,255,255,.18);padding-top:18px;margin-bottom:20px}
+  .socials{display:flex;gap:12px}
+  .socials a{
+    width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.14);
+    display:grid;place-items:center;font-size:.85rem;transition:.25s;
+  }
+  .socials a:hover{background:var(--accent)}
+
+  /* ============ MAIN ============ */
+  main{margin-left:230px}
+  section{scroll-margin-top:0}
+  .container{padding:0 36px}
+  .title-bar{display:block;width:40px;height:3px;background:var(--accent);border-radius:3px;margin-bottom:8px}
+  .section-title{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--navy);line-height:1.2}
+  .section-sub{color:var(--muted);font-size:.95rem}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:11px 22px;border-radius:30px;
+    font-size:.85rem;font-weight:600;border:1.5px solid var(--navy);transition:.25s;cursor:pointer;background:transparent;color:var(--navy);
+  }
+  .btn-primary{background:var(--navy);color:#fff}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
+  .btn-outline:hover{background:var(--navy);color:#fff}
+  .btn-sm{padding:8px 18px;font-size:.78rem}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;min-height:355px;padding:40px 36px 36px;
+    background:#f3f3fb url('images/hero.jpg') right center/cover no-repeat;
+    display:flex;align-items:center;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.85) 45%,rgba(255,255,255,0) 75%);
+  }
+  .hero-content{position:relative;z-index:2;max-width:560px}
+  .badge{
+    display:inline-flex;align-items:center;gap:10px;background:#f6e0e0;color:var(--text);
+    padding:8px 18px;border-radius:30px;font-size:.82rem;font-weight:500;margin-bottom:18px;
+  }
+  .badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .hero h1{font-size:2.6rem;line-height:1.1;color:#3a3d52;font-weight:700}
+  .hero h1 span{display:block;font-size:3.1rem;color:var(--navy-dark);font-weight:800;letter-spacing:-1px}
+  .hero h2{font-size:1.3rem;font-weight:600;color:var(--navy-dark);margin:10px 0 14px}
+  .hero p{color:var(--text);font-size:.95rem;max-width:430px;margin-bottom:22px}
+  .hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* ============ ABOUT ============ */
+  .about{padding:26px 0}
+  .about-grid{display:grid;grid-template-columns:232px 1fr 280px;gap:36px;align-items:start}
+  .profile-photo{
+    width:232px;height:250px;border-radius:14px;overflow:hidden;
+    background:linear-gradient(160deg,#d9d9f5,#b9b9ea);box-shadow:var(--shadow);
+  }
+  .profile-photo img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .about-text .title-bar{margin-top:6px}
+  .about-text p{font-size:.92rem;margin:10px 0 14px}
+  .info-card{background:var(--lavender);border-radius:var(--radius);padding:24px 26px;display:flex;flex-direction:column;gap:22px}
+  .info-item{display:flex;gap:18px;align-items:flex-start}
+  .info-item i{font-size:1.4rem;color:var(--navy);width:30px;text-align:center;margin-top:4px}
+  .info-item h4{font-size:1rem;color:var(--navy-dark)}
+  .info-item p{font-size:.8rem;color:var(--muted);line-height:1.45}
+
+  /* ============ SKILLS ============ */
+  .skills{background:var(--lavender-2);padding:18px 0 22px}
+  .skills-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:16px}
+  .skill-card{
+    background:#fff;border-radius:14px;padding:16px 8px;text-align:center;box-shadow:var(--shadow);
+    transition:.25s;display:flex;flex-direction:column;align-items:center;gap:8px;
+  }
+  .skill-card:hover{transform:translateY(-4px)}
+  .skill-card i{font-size:1.7rem;color:#7b8cf0}
+  .skill-card h4{font-size:.8rem;font-weight:500;line-height:1.3}
+  .skill-card small{display:block;font-size:.7rem;color:var(--muted);font-weight:400}
+
+  /* ============ PROJECTS ============ */
+  .projects{padding:18px 0 22px}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
+  .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .project-card{
+    background:#fff;border:1px solid #ececf6;border-radius:12px;padding:14px 16px;
+    display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);transition:.25s;cursor:pointer;
+  }
+  .project-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .p-icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem;flex-shrink:0}
+  .p-info{flex:1}
+  .p-info h4{font-size:.88rem;line-height:1.25;color:var(--navy-dark)}
+  .p-info p{font-size:.72rem;color:var(--muted);margin-top:3px}
+  .p-arrow{width:26px;height:26px;border-radius:50%;background:var(--lavender);display:grid;place-items:center;font-size:.7rem;color:var(--muted)}
+  .ic-blue{background:#e5eeff;color:#3b7bf2}
+  .ic-green{background:#e2f5ea;color:#1d8a4c}
+  .ic-purple{background:#ece8fb;color:#6b4de0}
+  .ic-pink{background:#fde6ee;color:#e0456f}
+  .ic-orange{background:#fff0e0;color:#f08a1c}
+  .ic-teal{background:#dff4f6;color:#1798ab}
+
+  /* ============ BOTTOM ============ */
+  .bottom{padding:18px 0 30px}
+  .bottom-grid{display:grid;grid-template-columns:1fr 1fr 330px;gap:30px;align-items:start}
+  .col-title{display:flex;align-items:center;gap:12px;font-size:1.15rem;color:var(--navy-dark);font-weight:700;margin-bottom:14px}
+  .col-title i{color:var(--navy);font-size:1.2rem}
+  .divider-col{border-left:1px solid #e3e3f1;padding-left:30px}
+  .timeline{position:relative;padding-left:28px}
+  .timeline::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1.5px;background:var(--navy)}
+  .t-item{position:relative;margin-bottom:14px}
+  .t-item::before{content:"";position:absolute;left:-28px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--navy-dark);border:2px solid #fff;box-shadow:0 0 0 1px var(--navy)}
+  .t-item h4{font-size:.9rem;color:var(--navy-dark)}
+  .t-item p{font-size:.78rem;color:var(--muted);line-height:1.45}
+  .edu-item h4{font-size:.88rem;color:var(--navy-dark);line-height:1.35}
+  .edu-item p{font-size:.8rem;color:var(--muted);margin-top:6px}
+  .contact-card{
+    background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:#fff;border-radius:var(--radius);
+    padding:24px 26px;position:relative;overflow:hidden;
+  }
+  .contact-card::after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(255,255,255,.15)}
+  .contact-card h3{display:flex;align-items:center;gap:12px;font-size:1.1rem;margin-bottom:10px}
+  .contact-card p{font-size:.82rem;opacity:.9;margin-bottom:16px}
+  .contact-card .btn{background:#fff;color:var(--navy-dark);border-color:#fff}
+  .contact-card .btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--lavender-2);padding:20px 36px;display:flex;align-items:center;gap:22px;font-size:.78rem;color:var(--text)}
+  footer::before,footer::after{content:"";flex:1;height:1px;background:#c9c9de}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1150px){
+    .about-grid{grid-template-columns:232px 1fr}
+    .info-card{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}
+    .skills-grid{grid-template-columns:repeat(3,1fr)}
+    .projects-grid{grid-template-columns:repeat(2,1fr)}
+    .bottom-grid{grid-template-columns:1fr 1fr}
+    .contact-card{grid-column:1/-1}
+  }
+  @media (max-width:860px){
+    .sidebar{
+      position:sticky;top:0;width:100%;height:auto;flex-direction:row;align-items:center;
+      padding:10px 16px;overflow-x:auto;gap:16px;
+    }
+    .sidebar::after,.brand-role,.tagline,.socials,.logo{display:none}
+    .brand-name{font-size:.95rem;white-space:nowrap}
+    .nav{margin:0;flex-direction:row;gap:2px}
+    .nav a{padding:8px 12px;font-size:.8rem;white-space:nowrap;gap:8px}
+    .side-bottom{display:none}
+    main{margin-left:0}
+    .hero h1{font-size:2rem}.hero h1 span{font-size:2.3rem}
+    .hero::before{background:rgba(255,255,255,.88)}
+    .container{padding:0 20px}
+    .hero{padding:30px 20px}
+    .about-grid{grid-template-columns:1fr}
+    .profile-photo{margin:0 auto}
+    .skills-grid{grid-template-columns:repeat(2,1fr)}
+    .projects-grid,.bottom-grid{grid-template-columns:1fr}
+    .divider-col{border-left:none;padding-left:0}
+    .section-head{flex-direction:column;align-items:flex-start;gap:10px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="sidebar">
+  <div>
+    <div class="logo">NR</div>
+    <div class="brand-name">Norliyana<br>Rosamadi</div>
+    <div class="brand-role">Administrative<br>Professional</div>
+  </div>
+
+  <nav class="nav">
+    <a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="#about"><i class="fa-solid fa-user"></i> About</a>
+    <a href="#skills"><i class="fa-solid fa-gear"></i> Skills</a>
+    <a href="#projects"><i class="fa-solid fa-folder-open"></i> Projects</a>
+    <a href="#experience"><i class="fa-solid fa-briefcase"></i> Experience</a>
+    <a href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+  </nav>
+
+  <div class="side-bottom">
+    <p class="tagline">Organize • Support • Grow</p>
+    <div class="socials">
+      <a href="https://linkedin.com/in/username" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="mailto:email@example.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://github.com/username" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    </div>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="badge">Available for Opportunities</span>
+      <h1>Hello, I’m <span>Norliyana Rosamadi</span></h1>
+      <h2>Administrative Professional</h2>
+      <p>A detail-oriented and organized individual with experience in administration, documentation and office management.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View My Portfolio <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="cv/Norliyana-Rosamadi-CV.pdf" download class="btn btn-outline"><i class="fa-solid fa-download"></i> Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="profile-photo">
+        <img src="images/profile.jpg" alt="Norliyana Rosamadi">
+      </div>
+
+      <div class="about-text">
+        <span class="title-bar"></span>
+        <h2 class="section-title">About Me</h2>
+        <p>I am a Computer Science graduate from Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA), specializing in Computer Systems and Networking.</p>
+        <p>I have hands-on experience in administrative support, document management, data entry and coordination. I aim to contribute to an organization with efficiency and professionalism.</p>
+        <a href="#experience" class="btn btn-outline btn-sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="info-card">
+        <div class="info-item">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <div><h4>Education</h4><p>Bachelor of Computer Science (Computer Systems &amp; Networking) with Honours</p></div>
+        </div>
+        <div class="info-item">
+          <i class="fa-solid fa-building-columns"></i>
+          <div><h4>University</h4><p>UMPSA</p></div>
+        </div>
+        <div class="info-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><h4>Interest</h4><p>Administration &amp; IT</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <span class="title-bar"></span>
+      <h2 class="section-title">My Skills</h2>
+      <p class="section-sub">Key skills and competencies</p>
+
+      <div class="skills-grid">
+        <div class="skill-card"><i class="fa-solid fa-laptop"></i><h4>Microsoft Office<small>(Word, Excel, PowerPoint)</small></h4></div>
+        <div class="skill-card"><i class="fa-solid fa-file-lines"></i><h4>Documentation<br>&amp; Filing</h4></div>
+        <div class="skill-card"><i class="fa-solid fa-users"></i><h4>Communication<br>&amp; Teamwork</h4></div>
+        <div class="skill-card"><i class="fa-solid fa-calendar-days"></i><h4>Organization &amp;<br>Time Management</h4></div>
+        <div class="skill-card"><i class="fa-solid fa-gear"></i><h4>Data Management<br>&amp; Reporting</h4></div>
+        <div class="skill-card"><i class="fa-solid fa-headset"></i><h4>Technical Support<small>(Basic Networking)</small></h4></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="title-bar"></span>
+          <h2 class="section-title">My Projects</h2>
+          <p class="section-sub">Examples of my administrative work</p>
+        </div>
+        <a href="#" class="btn btn-outline btn-sm">View All Projects <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="p-icon ic-blue"><i class="fa-solid fa-file-lines"></i></div>
+          <div class="p-info"><h4>Administrative Documentation</h4><p>Letters, memos &amp; official documents</p></div>
+          <span class="p-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+        </div>
+        <div class="project-card">
+          <div class="p-icon ic-green"><i class="fa-solid fa-file-excel"></i></div>
+          <div class="p-info"><h4>Employee Attendance Tracker</h4><p>Excel-based system</p></div>
+          <p><a href="https://docs.google.com/spreadsheets/d/1N6odSXUOAiWZFKhG8e8VN0NCP7FOxmYhflX1s1MX9xw/edit?usp=sharing"><span class="p-arrow"><i class="fa-solid fa-chevron-right"></i></span></a></p>
+        </div>
+        <div class="project-card">
+          <div class="p-icon ic-purple"><i class="fa-solid fa-cube"></i></div>
+          <div class="p-info"><h4>Inventory Management</h4><p>Stock tracking system</p></div>
+          <span class="p-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+        </div>
+        <div class="project-card">
+          <div class="p-icon ic-pink"><i class="fa-solid fa-people-group"></i></div>
+          <div class="p-info"><h4>Meeting Minutes Template</h4><p>Structured meeting records</p></div>
+          <span class="p-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+        </div>
+        <div class="project-card">
+          <div class="p-icon ic-orange"><i class="fa-solid fa-wallet"></i></div>
+          <div class="p-info"><h4>Expense Tracking</h4><p>Monthly budget tracker</p></div>
+          <span class="p-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+        </div>
+        <div class="project-card">
+          <div class="p-icon ic-teal"><i class="fa-solid fa-folder-open"></i></div>
+          <div class="p-info"><h4>Document Register</h4><p>File management system</p></div>
+          <span class="p-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE / EDUCATION / CONTACT ============ -->
+  <section class="bottom" id="experience">
+    <div class="container bottom-grid">
+
+      <div>
+        <h3 class="col-title"><i class="fa-solid fa-briefcase"></i> Experience</h3>
+        <div class="timeline">
+          <div class="t-item">
+            <h4>Protégé IT Engineer</h4>
+            <p>Comintel Sdn. Bhd.<br>2025 – Present</p>
+          </div>
+          <div class="t-item">
+            <h4>ICT Support Intern</h4>
+            <p>Pejabat Tanah Besut<br>2024 – 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider-col">
+        <h3 class="col-title"><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+        <div class="edu-item">
+          <h4>Bachelor of Computer Science (Computer Systems &amp; Networking) with Honours</h4>
+          <p>Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA)</p>
+        </div>
+      </div>
+
+      <div class="contact-card" id="contact">
+        <h3><i class="fa-solid fa-paper-plane"></i> Get In Touch</h3>
+        <p>Feel free to reach out for any opportunities or collaborations.</p>
+        <a href="mailto:email@example.com" class="btn btn-sm">Contact Me <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 <strong>Norliyana Rosamadi</strong>. All Rights Reserved.</span>
+  </footer>
+
+</main>
+
+<script>
+  // Highlight menu mengikut section semasa scroll
+  const links = document.querySelectorAll('.nav a');
+  const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY + 140;
+    let current = 0;
+    sections.forEach((s, i) => { if (s && s.offsetTop <= y) current = i; });
+    links.forEach((l, i) => l.classList.toggle('active', i === current));
+  });
+</script>
+</body>
+</html>
